@@ -327,7 +327,7 @@ body {
     perspective: 500px;
   }
   .nets-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     padding: 5px; /* Further reduce padding if needed */
     gap: 10px; /* Gap might be slightly larger if single column */
   }
