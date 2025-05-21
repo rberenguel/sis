@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <title>Sis</title>
+    <link href="style.css" rel="stylesheet" />
+    <style></style>
+  </head>
+  <body>
+    <div class="scene-container">
+      <div class="scene">
+        <div class="cube" id="gameCube">
+          <div class="cube__face cube__face--front" id="faceFront"></div>
+          <div class="cube__face cube__face--back" id="faceBack"></div>
+          <div class="cube__face cube__face--right" id="faceRight"></div>
+          <div class="cube__face cube__face--left" id="faceLeft"></div>
+          <div class="cube__face cube__face--top" id="faceTop"></div>
+          <div class="cube__face cube__face--bottom" id="faceBottom"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hiddenFacesInfo" class="hidden-faces-info-container">
+      Hidden Faces - Left:
+      <span id="hiddenLeftVal" class="font-semibold"></span>, Bottom:
+      <span id="hiddenBottomVal" class="font-semibold"></span>, Back:
+      <span id="hiddenBackVal" class="font-semibold"></span>
+    </div>
+
+    <div id="messageArea" class="message-area-style"></div>
+    <div class="nets-container-layout">
+      <div id="netsContainer" class="nets-container"></div>
+    </div>
+
+    <button
+      id="newPuzzleButton"
+      class="new-puzzle-button-style"
+      style="background-color: var(--blue); color: var(--base3)"
+    >
+      New Puzzle
+    </button>
+
+    <script src="game.js"></script>
+  </body>
+</html>

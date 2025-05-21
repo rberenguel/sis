@@ -1,0 +1,317 @@
+/* Solarized Dark Palette */
+:root {
+  --base: #001218;
+  --base03: #002b36; /* Background */
+  --base02: #073642; /* Darker Background tones / Cube Face / Net Cell Background */
+  --base01: #586e75; /* Content - secondary */
+  --base00: #657b83; /* Content - primary / Borders */
+  --base0: #839496; /* Text */
+  --base1: #93a1a1; /* Lighter Text / Cube Face Text */
+  --base2: #eee8d5;
+  --base3: #fdf6e3;
+  --yellow: #b58900;
+  --orange: #cb4b16;
+  --red: #dc322f;
+  --magenta: #d33682;
+  --violet: #6c71c4;
+  --blue: #268bd2;
+  --cyan: #2aa198; /* Cube Dots */
+  --green: #859900;
+}
+
+/* General Body and Layout */
+body {
+  font-family: "Inter", sans-serif;
+  overscroll-behavior: none;
+  background-color: var(--base);
+  color: var(--base0);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem; /* 24px */
+  padding-bottom: 1.5rem; /* 24px */
+  margin: 0;
+}
+
+/* Headings and Text */
+.main-title {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem;
+  font-weight: 700; /* bold */
+  margin-bottom: 1rem; /* 16px (mb-4) */
+  text-align: center;
+  color: var(--base1);
+}
+@media (min-width: 768px) {
+  /* md breakpoint */
+  .main-title {
+    font-size: 1.875rem; /* 30px (text-3xl) */
+    line-height: 2.25rem;
+  }
+}
+
+.scene-container {
+  /* Replaces mb-2 for scene */
+  margin-top: 2.5rem;
+}
+
+.hidden-faces-info-container {
+  font-size: 0.75rem; /* 12px (text-xs) */
+  line-height: 1rem;
+  margin-bottom: 1rem; /* 16px (mb-4) */
+  text-align: center;
+  /* Styles previously from #hiddenFacesInfo ID selector */
+  background-color: var(--base02);
+  color: var(--base1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+@media (min-width: 640px) {
+  /* sm breakpoint */
+  .hidden-faces-info-container {
+    font-size: 0.875rem; /* 14px (text-sm) */
+    line-height: 1.25rem;
+  }
+}
+.hidden-faces-info-container .font-semibold {
+  font-weight: 600;
+}
+
+.message-area-style {
+  height: 1.75rem; /* 28px (h-7) */
+  margin-bottom: 0.75rem; /* 12px (mb-3) */
+  font-size: 1.125rem; /* 18px (text-lg) */
+  line-height: 1.75rem;
+  font-weight: 600; /* semibold */
+  text-align: center;
+  color: var(--base0); /* Initial color */
+}
+.message-area-style.message-correct {
+  color: var(--green);
+}
+.message-area-style.message-incorrect {
+  color: var(--red);
+}
+
+.nets-container-layout {
+  /* Replaces mb-5 for netsContainer */
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.new-puzzle-button-style {
+  font-weight: 700; /* bold */
+  padding-top: 0.5rem; /* 8px (py-2) */
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem; /* 20px (px-5) */
+  padding-right: 1.25rem;
+  border-radius: 0.5rem; /* 8px (rounded-lg) */
+  background-color: var(--blue); /* From inline style */
+  color: var(--base3); /* From inline style */
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.12); /* shadow-md adjusted */
+  transition-property: box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+  font-size: 1rem; /* 16px (text-base) */
+  line-height: 1.5rem;
+  cursor: pointer;
+  border: none;
+}
+.new-puzzle-button-style:hover {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -2px rgba(0, 0, 0, 0.15); /* shadow-lg adjusted */
+}
+
+/* Existing Styles (Cube, Nets, Dots etc.) - largely unchanged */
+.scene {
+  width: 150px;
+  height: 150px;
+  perspective: 500px;
+  margin: 10px auto; /* This margin is overridden by .scene-container for bottom margin */
+}
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-25deg) rotateY(-35deg);
+}
+.cube__face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--base00);
+  background: var(--base02);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--base1);
+  backface-visibility: hidden;
+  user-select: none;
+}
+.cube__face--front {
+  transform: rotateY(0deg) translateZ(40px);
+}
+.cube__face--back {
+  transform: rotateY(180deg) translateZ(40px);
+}
+.cube__face--right {
+  transform: rotateY(90deg) translateZ(40px);
+}
+.cube__face--left {
+  transform: rotateY(-90deg) translateZ(40px);
+}
+.cube__face--top {
+  transform: rotateX(90deg) translateZ(40px);
+}
+.cube__face--bottom {
+  transform: rotateX(-90deg) translateZ(40px);
+}
+
+.nets-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 15px;
+  max-width: 760px;
+  margin: 0 auto; /* Centering the grid container itself */
+}
+@media (min-width: 700px) {
+  .nets-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 350px) {
+  .nets-container {
+    grid-template-columns: 1fr;
+  }
+}
+.net-option {
+  display: grid;
+  border: 2px solid transparent;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: var(--base);
+  transition:
+    border-color 0.3s,
+    transform 0.2s,
+    background-color 0.3s,
+    opacity 0.3s; /* Added opacity */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.net-option:hover:not(.selected-correct):not(.selected-incorrect) {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+.net-option.selected-correct {
+  border-color: var(--green);
+  background-color: #3a5500;
+  cursor: default;
+}
+.net-option.selected-incorrect {
+  border-color: var(--red);
+  background-color: #6b201e;
+  opacity: 0.7;
+}
+.net-cell {
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--base00);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--base02);
+  color: var(--base1);
+}
+.net-cell.empty {
+  background-color: var(--base);
+  border: 1px solid var(--base00);
+}
+
+.dice-dots {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "a . c"
+    ". e ."
+    "d . b";
+  padding: 5px;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--cyan);
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+}
+.cube__face .dot {
+  width: 12px;
+  height: 12px;
+}
+.dot-1 {
+  grid-area: e;
+}
+.dot-2a {
+  grid-area: a;
+}
+.dot-2b {
+  grid-area: b;
+}
+.dot-3a {
+  grid-area: a;
+}
+.dot-3b {
+  grid-area: e;
+}
+.dot-3c {
+  grid-area: b;
+}
+.dot-4a {
+  grid-area: a;
+}
+.dot-4b {
+  grid-area: b;
+}
+.dot-4c {
+  grid-area: c;
+}
+.dot-4d {
+  grid-area: d;
+}
+.dot-5a {
+  grid-area: a;
+}
+.dot-5b {
+  grid-area: b;
+}
+.dot-5c {
+  grid-area: c;
+}
+.dot-5d {
+  grid-area: d;
+}
+.dot-5e {
+  grid-area: e;
+}
+
+.net-cell .dice-dots {
+  padding: 3px;
+}
+.net-cell .dot {
+  width: 5px;
+  height: 5px;
+}
+
+/* Removed #hiddenFacesInfo ID selector as styles are now in .hidden-faces-info-container */
+/* Removed #messageArea.text-green-600 and .text-red-600 as they are replaced by .message-correct/incorrect */
