@@ -26,6 +26,7 @@ body {
   background-color: var(--base);
   color: var(--base0);
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -176,9 +177,9 @@ body {
 
 .nets-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 15px;
-  padding: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 8px;
+  padding: 8px;
   max-width: 760px;
   margin: 0 auto; /* Centering the grid container itself */
 }
@@ -315,3 +316,40 @@ body {
 
 /* Removed #hiddenFacesInfo ID selector as styles are now in .hidden-faces-info-container */
 /* Removed #messageArea.text-green-600 and .text-red-600 as they are replaced by .message-correct/incorrect */
+
+@media (max-width: 500px) {
+  .scene-container {
+    margin-top: 0;
+  }
+  .scene {
+    height: 100px;
+    width: 100px;
+    perspective: 500px;
+  }
+  .nets-container {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 5px; /* Further reduce padding if needed */
+    gap: 10px; /* Gap might be slightly larger if single column */
+  }
+  .net-option {
+    transform: scale(0.8);
+  }
+  .hidden-faces-info-container {
+    margin-bottom: 0.2em;
+  }
+  #messageArea {
+    display: none;
+  }
+}
+
+/* 4. Rule for larger screens (Tablets/Desktops).
+      This explicitly sets 4 columns, providing a consistent desktop layout.
+      If you prefer `auto-fit` to manage all screen sizes, you can remove this rule,
+      but it's often good to have a more controlled layout for wider views. */
+@media (min-width: 700px) {
+  .nets-container {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 15px; /* Restore larger padding for desktop */
+    gap: 15px; /* Restore larger gap for desktop */
+  }
+}
