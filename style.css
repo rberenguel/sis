@@ -326,13 +326,20 @@ body {
     width: 100px;
     perspective: 500px;
   }
+  .nets-container-layout {
+    transform: scale(0.8) translate(0, -10%);
+  }
   .nets-container {
     grid-template-columns: repeat(2, 1fr);
-    padding: 5px; /* Further reduce padding if needed */
-    gap: 10px; /* Gap might be slightly larger if single column */
+    padding: 0px; /* Further reduce padding if needed */
+    gap: 0px; /* Gap might be slightly larger if single column */
   }
-  .net-option {
-    transform: scale(0.8);
+  #newPuzzleButton {
+    display: block; /* Make the button a block-level element */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    grid-column: span 2;
   }
   .hidden-faces-info-container {
     margin-bottom: 0.2em;
